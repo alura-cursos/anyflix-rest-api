@@ -22,4 +22,13 @@ class MovieService(
     fun remove(id: UUID) {
         repository.deleteById(id)
     }
+
+    fun addToMyList(id: UUID) {
+        repository.addToMyList(id)
+    }
+
+    fun removeFromMyList(id: UUID) {
+        repository.removeFromMyList(id)
+    }
+
 }

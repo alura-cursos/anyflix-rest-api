@@ -1,11 +1,13 @@
 package br.com.alura.anyflix.dto
 
 import br.com.alura.anyflix.models.Movie
-import java.util.UUID
+import java.util.*
 
 data class MovieRequest(
     val title: String,
-    val image: String
+    val image: String,
+    val year: String,
+    val plot: String
 )
 
 fun MovieRequest.toMovie(
@@ -13,5 +15,7 @@ fun MovieRequest.toMovie(
 ) = Movie(
     id = id ?: UUID.randomUUID(),
     title = title,
-    image = image
+    image = image,
+    plot = plot,
+    year = year
 )

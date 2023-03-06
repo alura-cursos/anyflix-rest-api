@@ -1,4 +1,4 @@
-package br.com.alura.anyflix.controller
+package br.com.alura.anyflix.controllers
 
 import br.com.alura.anyflix.dto.MovieRequest
 import br.com.alura.anyflix.dto.MovieResponse
@@ -14,7 +14,6 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
-import org.springframework.web.bind.annotation.RequestParam
 import java.lang.IllegalArgumentException
 import java.util.*
 
@@ -36,8 +35,9 @@ class MoviesController(
     fun save(
         @RequestBody request: MovieRequest
     ): ResponseEntity<MovieResponse> {
-        val movie = request.toMovie()
-        val savedMovie = service.save(movie)
+        val savedMovie = service.save(
+            request.toMovie()
+        )
         return ResponseEntity.ok(
             savedMovie.toResponse()
         )
@@ -47,30 +47,47 @@ class MoviesController(
     fun update(
         @RequestBody request: MovieRequest,
         @PathVariable("id") id: UUID
-    ): ResponseEntity<Any> =
-        if (service.existsById(id)) {
-            println("updating the movie")
-            val savedMovie = service.save(
-                request.toMovie(id)
-            )
-            ResponseEntity.ok(
-                savedMovie
-            )
-        } else {
-            ResponseEntity.notFound().build()
-        }
+    ): ResponseEntity<Any> {
+        val savedMovie = service.save(
+            request.toMovie(id)
+        )
+        return ResponseEntity.ok(
+            savedMovie
+        )
+    }
 
     @DeleteMapping("{id}")
     fun remove(
         @PathVariable("id") id: UUID
     ): ResponseEntity<Any> =
         try {
-            val savedMovie = service.remove(id)
-            ResponseEntity.ok(
-                savedMovie
-            )
+            service.remove(id)
+            ResponseEntity.ok().build()
         } catch (e: IllegalArgumentException) {
             ResponseEntity.notFound().build()
         }
 
+    @PutMapping("addToMyList/{id}")
+    fun addToMyList(
+        @PathVariable("id") id: UUID
+    ): ResponseEntity<Any> =
+        if (service.existsById(id)) {
+            service.addToMyList(id)
+            ResponseEntity.ok().build()
+        } else {
+            ResponseEntity.notFound().build()
+        }
+
+    @PutMapping("removeFromMyList/{id}")
+    fun removeFromMyList(
+        @PathVariable("id") id: UUID
+    ): ResponseEntity<Any> =
+        if (service.existsById(id)) {
+            service.removeFromMyList(id)
+            ResponseEntity.ok().build()
+        } else {
+            ResponseEntity.notFound().build()
+        }
+
 }
+
