@@ -3,3 +3,5 @@ spring:
     url: jdbc:h2:file:./database/main/db
 server:
   port: ${port:8080}
+movies:
+  amount: ${amount:20}

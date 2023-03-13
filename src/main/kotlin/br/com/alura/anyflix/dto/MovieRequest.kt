@@ -6,7 +6,7 @@ import java.util.*
 data class MovieRequest(
     val title: String,
     val image: String,
-    val year: String,
+    val year: Int,
     val plot: String
 )
 

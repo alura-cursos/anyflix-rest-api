@@ -21,4 +21,6 @@ interface MovieRepository : CrudRepository<Movie, UUID> {
     @Query("UPDATE movies SET inMyList = false WHERE id = :id")
     fun removeFromMyList(@Param("id") id: UUID)
 
+    fun findByInMyList(inMyList: Boolean): List<Movie>
+
 }

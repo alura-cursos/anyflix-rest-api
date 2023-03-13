@@ -2,6 +2,7 @@ package br.com.alura.anyflix.services
 
 import br.com.alura.anyflix.models.Movie
 import br.com.alura.anyflix.repositories.MovieRepository
+import org.springframework.data.repository.findByIdOrNull
 import org.springframework.stereotype.Service
 import java.util.*
 
@@ -30,5 +31,12 @@ class MovieService(
     fun removeFromMyList(id: UUID) {
         repository.removeFromMyList(id)
     }
+
+    fun findMovieById(id: UUID): Movie? {
+        return repository.findByIdOrNull(id)
+    }
+
+    fun findMyList(): List<Movie> =
+        repository.findByInMyList(inMyList = true)
 
 }

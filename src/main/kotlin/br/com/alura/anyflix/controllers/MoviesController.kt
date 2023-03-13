@@ -3,18 +3,11 @@ package br.com.alura.anyflix.controllers
 import br.com.alura.anyflix.dto.MovieRequest
 import br.com.alura.anyflix.dto.MovieResponse
 import br.com.alura.anyflix.dto.toMovie
-import br.com.alura.anyflix.dto.toResponse
+import br.com.alura.anyflix.models.toMovieResponse
 import br.com.alura.anyflix.services.MovieService
 import org.springframework.http.ResponseEntity
 import org.springframework.stereotype.Controller
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RequestMapping
-import java.lang.IllegalArgumentException
+import org.springframework.web.bind.annotation.*
 import java.util.*
 
 @RequestMapping("movies")
@@ -27,34 +20,38 @@ class MoviesController(
     fun getAll(): ResponseEntity<List<MovieResponse>> =
         ResponseEntity.ok(
             service.findAll().map {
-                it.toResponse()
+                it.toMovieResponse()
             }
         )
+
+    @GetMapping("{id}")
+    fun findMovieById(
+        @PathVariable("id") id: UUID
+    ): ResponseEntity<Any> =
+        service.findMovieById(id)?.let {
+            ResponseEntity.ok(it)
+        } ?: ResponseEntity.notFound().build()
 
     @PostMapping
     fun save(
         @RequestBody request: MovieRequest
-    ): ResponseEntity<MovieResponse> {
-        val savedMovie = service.save(
-            request.toMovie()
+    ): ResponseEntity<MovieResponse> =
+        ResponseEntity.ok(
+            service.save(
+                request.toMovie()
+            ).toMovieResponse()
         )
-        return ResponseEntity.ok(
-            savedMovie.toResponse()
-        )
-    }
 
     @PutMapping("{id}")
     fun update(
         @RequestBody request: MovieRequest,
         @PathVariable("id") id: UUID
-    ): ResponseEntity<Any> {
-        val savedMovie = service.save(
-            request.toMovie(id)
+    ): ResponseEntity<Any> =
+        ResponseEntity.ok(
+            service.save(
+                request.toMovie(id)
+            )
         )
-        return ResponseEntity.ok(
-            savedMovie
-        )
-    }
 
     @DeleteMapping("{id}")
     fun remove(
@@ -88,6 +85,16 @@ class MoviesController(
         } else {
             ResponseEntity.notFound().build()
         }
+
+    @GetMapping("myList")
+    fun myList():
+            ResponseEntity<List<MovieResponse>> =
+        ResponseEntity.ok(
+            service.findMyList()
+                .map {
+                    it.toMovieResponse()
+                }
+        )
 
 }
 
