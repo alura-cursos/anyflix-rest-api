@@ -1,83 +1,207 @@
-## Readme template da Alura
+# Anyflix REST API
 
-Template para personalizar readme dos projetos da [Alura](https://www.alura.com.br/). O objetivo deste template é auxiliar as pessoas que pretendem criar readmes mais informativos e descritivos. Considere esse modelo como base, mas se preferir, ajuste os detalhes conforme sua necessidade e caso queira, [confira esse artigo que ensina a personalizar readmes em geral](https://www.alura.com.br/artigos/escrever-bom-readme).
+![Programação-Anyflix REST API](https://user-images.githubusercontent.com/8989346/224768169-287d5f36-a934-4b4b-bf70-b27676b67945.png)
 
-## Exemplos de readmes
-
-<details>
-  <summary><b>Mobile</b></summary>
-    
-- [Android](https://github.com/alura-cursos/android-com-kotlin-personalizando-ui/blob/master/README.md)
-- [React Native](https://github.com/alura-cursos/react-native-comecando-do-zero/blob/main/README.md)
-- [Flutter](https://github.com/alura-cursos/flutter-nuvigator/blob/start/README.md)
-</details>
-
-<details>
-  <summary><b>Front-end</b></summary>
-    
-- [JavaScript](https://github.com/vanessametonini/aluramidi-curso/blob/master/README.md) 
-</details>
-
-<details>
-  <summary><b>Programação</b></summary>
-  
-- [Kotlin](https://github.com/alura-cursos/kotlin-introducao-orientacao-a-objetos/blob/main/README.md)
-- [Java](https://github.com/gui-lirasilva/Edige-POO/blob/master/README.md)
-  
-</details>
-
-Ao criar o seu readme, remova todas as informações acima e mantenha apenas a imagem de capa e o conteúdo restante a partir do título **"Nome do projeto"**.
-
-## Imagem de capa
-
-Adicione a imagem de capa com o tema do seu projeto:
-
-![Thumbnail GitHub](https://user-images.githubusercontent.com/8989346/123303345-171fc980-d4f4-11eb-84ae-cb0e49bfb126.png)
-
-> Você pode pegar a imagem a partir [deste template](https://docs.google.com/presentation/d/1im_-_spDdNEEsfrmjeZet2ZzVKjG-sQSBWfPFJhZ4q0/edit#slide=id.gb6f422ab58_0_111).
-
-> Ou gerar neste [site](https://alurathumbnail.vercel.app/).
-
-Após adicionar a imagem, também modifique as configurações do projeto para garantir que a imagem vai ser carregada como thumbnail:
-
-**Settings** > **Options** > **Social preview** > **Edit** > **Upload an image...**
-
-<details>
-  <summary><b>Demonstração da adição de thumbnail<b/></summary>
-    
-![adicionando-imagem-preview](https://user-images.githubusercontent.com/8989346/123303159-e0e24a00-d4f3-11eb-9900-92a8b15bc31b.gif)
-    
-</details>
-  
-# Nome do projeto
-
-Descreva o que é o projeto e o que ele faz
+REST API em Spring Boot para consumir filmes
 
 ## 🔨 Funcionalidades do projeto
 
-Indique quais são as funcionalidades e comportamentos do App
+A API oferece as seguintes funcionalidades:
 
-Se possível, apresente um exemplo visual do projeto, seja gif, imagens ou vídeo, abaixo segue um exemplo:
+- Listagem, registro, alteração e remoção de filmes.
+- Busca de filme por id.
+- Listagem, registro e remoção da minha lista (filmes favoritados)
 
-![](https://github.com/alura-cursos/android-com-kotlin-personalizando-ui/raw/master/img/amostra.gif)
+## Como baixar
 
-## ✔️ Técnicas e tecnologias utilizadas
+Você pode [baixar o arquivo executável](https://github.com/alura-cursos/anyflix-rest-api/raw/runnable-api/anyflix-api.jar) ou [acessar o código fonte via GitHub](https://github.com/alura-cursos/anyflix-rest-api/tree/dev).
 
-**Faça uma lista de tecnologias e técnicas utilizadas (a justificativa e descrição são opcionais)**:
+## Como executar
 
-- `Funcionalidade 1`: descrição da funcionalidade 1
-- `Funcionalidade 2`: descrição da funcionalidade 2
-  - `Funcionalidade 2a`: descrição da funcionalidade 2a relacionada à funcionalidade 2
-- `Funcionalidade 3`: descrição da funcionalidade 3
+É possível rodar a API a partir do projeto ou arquivo jar.
 
-## 📁 Acesso ao projeto
+### Projeto
 
-**Indique como é possível baixar ou acessar o código fonte do projeto, seja projeto inicial ou final**
+Para rodar via projeto, baixe ou faça clone do repositório do GitHub. Dentro do diretório raiz, execute a task `bootRun` do Gradle. A primeira execução vai realizar o download de todas dependências necessárias.
+9
+> O uso do Wrapper, `gradlew` (Linux)  ou `gradlew.bat` (Windows), é recomendado para garantir a compatibilidade. A partir do projeto, você também pode gerar o arquivo jar se preferir, para isso rode a task `build`. Ao finalizar a task, o jar gerado será armazenado no diretório **build/libs/file-name.jar**.
 
-## 🛠️ Abrir e rodar o projeto
+### Arquivo jar
 
-**Apresente as instruções necessárias para abrir e executar o projeto**
+Para rodar o arquivo jar, vá até o arquivo a partir de um terminal (prompt no Windows) e rode o seguinte comando:
 
-## 📚 Mais informações do curso
+```
+java -jar file-name.jar
+```
 
-**Faça um CTA (_call to action_) para o curso do projeto**
+> A build do projeto foi feita com Java 17, portanto, utilize a mesma versão ou uma superior. Para garantir o funcionamento, tente rodar com a 17.
+
+## Modificando properties de inicialização
+
+Por padrão o Spring Boot vai rodar a aplicação na porta `8080` e a quantidade de filmes gerados é `20`.
+
+> As informações dos filmes (id, título, imagem, ano e trama) são geradas aleatoriamente com exceção da indicação para minha lista que é sempre `false`. Também, todas são fictícias e sem nenhuma ligação.
+
+Caso queria modificar ambos valores, edite os valores das propriedades:
+
+```yaml
+server:
+  port: ${port:8081}
+movies:
+  amount: ${amount:30}
+```
+
+Na amostra acima, a aplicação vai operar na porta `8081` e serão registrados até 30 filmes `30`.
+
+## Modificando propriedades durante a execução
+
+Também é possível modificar as propriedades via command line durante a execução.
+
+### Via task `bootRun` do Gradle
+
+Com o Gradle você pode alterar os valores das properties por meio do comando `-args`:
+
+```
+./gradlew bootRun --args='--server.port=8081 --movies.amount=30'
+```
+
+### Via arquivo jar gerado
+
+Caso execute pelo arquivo jar,
+
+```
+java -jar file-name.jar --server.port=8081 --movies.amount=30
+```
+
+## 🗺️ Mapeamento de end-points
+
+Para acessar as funcionalidades foram disponibilizados os seguintes end-points:
+
+- `/movies`:
+    - **GET**: lista todos os filmes salvos:
+
+  ```json
+  // response example
+  [
+      {
+          "id": "06c1e492-64b9-4177-93b7-c17e7ac107e6",
+          "title": "putent malesuada",
+          "image": "https://picsum.photos/2528/1294",
+          "year": 2022,
+          "plot": "ipsum tempus id consectetuer felis ac definitiones quaerendum graece dolore deterruisset movet te dicat auctor vocent adipiscing vestibulum indoctum accusata voluptaria suscipit fugit mediocritatem",
+          "inMyList": false
+      },
+      {
+          "id": "e6ed59e8-c516-4d8b-b90d-2121588c2be6",
+          "title": "sed ex",
+          "image": "https://picsum.photos/2154/1144",
+          "year": 1961,
+          "plot": "orci pulvinar audire varius definiebas viderer a veniam etiam doctus inciderint mediocrem postulant nulla expetendis veritus sanctus lorem mollis senserit decore dis appareat viderer",
+          "inMyList": false
+      }
+  ]
+  ```
+
+    - **POST**: insere um filme:
+  
+  ```json
+  // request body example
+  {
+    "title" : "test title",
+    "image" : "test image",
+    "year" : "1994",
+    "plot" : "test plot"
+  }
+
+  // response example
+  {
+    "id": "31bc2c5c-3c37-4ddf-9c20-18d3b4a8be63",
+    "title": "test title",
+    "image": "test image",
+    "year": 1994,
+    "plot": "test plot",
+    "inMyList": false
+  }
+  ```
+
+- `/movies/{id}`:
+  - `id` deve ser um UUID v4 (Random) e precisa ser enviado no caminho do endereço, por exemplo: `/movies/31bc2c5c-3c37-4ddf-9c20-18d3b4a8be63`.
+
+    - **GET**: busca um filme pelo id:
+      - Retorna `404` caso o filme não existir
+
+  ```json
+  // response example
+  {
+    "id": "31bc2c5c-3c37-4ddf-9c20-18d3b4a8be63",
+    "title" : "test title",
+    "image" : "test image",
+    "year" : "1994",
+    "plot" : "test plot",
+    "inMyList": false
+  }
+  ```
+  
+    - **PUT**: salva ou atualiza filme com id específico:
+      - Retorna `404` caso o filme não existir
+
+  ```json
+  // request body example
+  {
+    "title" : "new test title",
+    "image" : "new test image",
+    "year" : "1995",
+    "plot" : "new test plot"
+  }
+
+  // response example
+  {
+    "id": "31bc2c5c-3c37-4ddf-9c20-18d3b4a8be63",
+    "title": "test title",
+    "image": "test image",
+    "year": 1994,
+    "plot": "test plot",
+    "inMyList": false
+  }
+  ```
+
+    - **DELETE**: remove o filme pelo id
+      - Retorna `404` caso o filme não existir
+
+- `/movies/addToMyList/{id}`
+  - exemplo: `/movies/addToMyList/31bc2c5c-3c37-4ddf-9c20-18d3b4a8be63`. 
+
+    - **PUT**: adiciona um filme específico na minha lista:
+      - Retorna `404` caso o filme não existir
+
+- `/movies/removeFromMyList/{id}`
+  - exemplo: `id` deve ser um UUID v4 (Random) e precisa ser enviado no caminho do endereço, por exemplo: `/movies/addToMyList/31bc2c5c-3c37-4ddf-9c20-18d3b4a8be63`. 
+
+    - **PUT**: remove um filme específico na minha lista:
+      - Retorna `404` caso o filme não existir
+
+- `/movies/myList`
+
+    - **GET**: devolve todos os filmes na minha lista:
+
+  ```json
+  // response example
+  [
+      {
+          "id": "367b7c14-0201-4b03-9478-f7626fd5469b",
+          "title": "te mucius",
+          "image": "https://picsum.photos/2062/1287",
+          "year": 1905,
+          "plot": "ridens alterum utroque dicant ignota turpis potenti ex vestibulum quisque instructior aliquam nam sapien liber graeco pericula semper similique repudiandae sodales neglegentur praesent vitae gubergren dico",
+          "inMyList": true
+      },
+      {
+          "id": "f0fd1630-cb89-47f1-993d-01b764a2e59f",
+          "title": "test title 2",
+          "image": "test image 3",
+          "year": 1995,
+          "plot": "test plot 4",
+          "inMyList": true
+      }
+  ]
+  ```
