@@ -14,7 +14,7 @@ A API oferece as seguintes funcionalidades:
 
 ## Como baixar
 
-Você pode [baixar o arquivo executável](https://github.com/alura-cursos/anyflix-rest-api/raw/runnable-api/anyflix-api.jar) ou [acessar o código fonte via GitHub](https://github.com/alura-cursos/anyflix-rest-api/tree/dev).
+Você pode [baixar o arquivo executável](https://github.com/alura-cursos/anyflix-rest-api/releases/download/v0.0.1/anyflix-rest-api.jar) ou [acessar o código fonte via GitHub](https://github.com/alura-cursos/anyflix-rest-api/tree/dev).
 
 ## Como executar
 
