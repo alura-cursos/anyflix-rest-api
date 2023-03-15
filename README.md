@@ -145,24 +145,6 @@ Para acessar as funcionalidades foram disponibilizados os seguintes end-points:
   ]
   ```
 
-## ✔️ Técnicas e tecnologias utilizadas
-
-A aplicação foi desenvolvida com o Spring Boot utilizando Kotlin e foram utilizadas as seguintes técnicas:
-
-- `Controllers`: mapear os endpoints 
-- `Services`: realizar as ações esperadas pelo controller
-- `Repositories`: oferecer e realizar os comportamentos de persistência de banco de dados
-- `Aspect`: apresentar logs de execução dos services e controllers indicando as classes e métodos chamados
-- `DTO`: padrão para indicar quais informações devem ser enviada/recebidas via requisição
-- `JPA` com `Hibernate`: solução para se comunicar com o banco de dados
-- `H2 database`: banco de dados que pode ser persistido em um arquivo local sem a necessidade de um serviço de SGBD
-
-Bibliotecas do Spring Framework que foram utilizadas:
-
-- `devtools`: ferramenta para agilizar o processo de desenvolvimento sem reiniciar a aplicação para atualizar
-- `starter-web`: suporte para aplicação web em geral
-- `starter-data-jpa`: suporte para abstrair a implementação de repositórios e reutilizar comportamentos de CRUD com base na configuração da JPA
-
 ## 📁 Acesso ao projeto
 
 Você pode acessar o projeto de diferentes maneiras:
@@ -200,6 +182,24 @@ A partir desse momento, é só acessar a baseUrl (por padrão "http://localhost:
 
 > **Observações**: evite rodar o JAR em algum local que exija mais privilégios para executar ou criar arquivos.
 
+## ✔️ Técnicas e tecnologias utilizadas
+
+A aplicação foi desenvolvida com o Spring Boot utilizando Kotlin e foram utilizadas as seguintes técnicas:
+
+- `Controllers`: mapear os endpoints 
+- `Services`: realizar as ações esperadas pelo controller
+- `Repositories`: oferecer e realizar os comportamentos de persistência de banco de dados
+- `Aspect`: apresentar logs de execução dos services e controllers indicando as classes e métodos chamados
+- `DTO`: padrão para indicar quais informações devem ser enviada/recebidas via requisição
+- `JPA` com `Hibernate`: solução para se comunicar com o banco de dados
+- `H2 database`: banco de dados que pode ser persistido em um arquivo local sem a necessidade de um serviço de SGBD
+
+Bibliotecas do Spring Framework que foram utilizadas:
+
+- `devtools`: ferramenta para agilizar o processo de desenvolvimento sem reiniciar a aplicação para atualizar
+- `starter-web`: suporte para aplicação web em geral
+- `starter-data-jpa`: suporte para abstrair a implementação de repositórios e reutilizar comportamentos de CRUD com base na configuração da JPA
+
 ## 🧪 Testando a API com o Postman
 
 Você pode testar a aplicação utilizando o Postman também, você pode [baixar o zip com a collection com todos os exemplos](https://github.com/alura-cursos/anyflix-rest-api/archive/refs/heads/postman.zip). 
@@ -211,11 +211,6 @@ Você pode testar a aplicação utilizando o Postman também, você pode [baixar
 Por padrão o Spring Boot vai rodar a aplicação na porta `8080` e a quantidade de filmes gerados é `20`. Porém, é possível modificar os valores dessas propriedades:
 
 > As informações dos filmes (id, título, imagem, ano e trama) são geradas aleatoriamente com exceção da indicação para minha lista que é sempre `false`. Também, todas são fictícias e sem nenhuma ligação.
-
-Caso queria modificar ambos valores, edite os valores das propriedades:
-
-
-Na amostra acima, a aplicação vai operar na porta `8081` e serão registrados até 30 filmes `30`.
 
 ### Código fonte
 
