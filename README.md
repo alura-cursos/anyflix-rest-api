@@ -163,6 +163,13 @@ Bibliotecas do Spring Framework que foram utilizadas:
 - `starter-web`: suporte para aplicação web em geral
 - `starter-data-jpa`: suporte para abstrair a implementação de repositórios e reutilizar comportamentos de CRUD com base na configuração da JPA
 
+## 📁 Acesso ao projeto
+
+Você pode acessar o projeto de diferentes maneiras:
+- [baixar o zip do código fonte](https://github.com/alura-cursos/anyflix-rest-api/archive/refs/heads/dev.zip)
+- [acessar o código fonte](https://github.com/alura-cursos/anyflix-rest-api/tree/dev)
+- [baixar o arquivo jar executável](https://github.com/alura-cursos/anyflix-rest-api/releases/download/v1.0.0/anyflix-rest-api.jar)
+
 ## 🛠️ Abrir e rodar o projeto
 
 O projeto pode ser acesso de duas maneiras diferente:
@@ -192,13 +199,6 @@ b.c.a.a.AnyflixApplicationKt          : Started AnyflixApplicationKt in 6.279 se
 A partir desse momento, é só acessar a baseUrl (por padrão "http://localhost:8080") via navegador que apresentará a página inicial da aplicação!
 
 > **Observações**: evite rodar o JAR em algum local que exija mais privilégios para executar ou criar arquivos.
-
-## 📁 Acesso ao projeto
-
-Você pode acessar o projeto de diferentes maneiras:
-- [baixar o zip do código fonte](https://github.com/alura-cursos/anyflix-rest-api/archive/refs/heads/dev.zip)
-- [acessar o código fonte](https://github.com/alura-cursos/anyflix-rest-api/tree/dev)
-- [baixar o arquivo jar executável](https://github.com/alura-cursos/anyflix-rest-api/releases/download/v1.0.0/anyflix-rest-api.jar)
 
 ## 🧪 Testando a API com o Postman
 
