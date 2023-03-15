@@ -2,7 +2,7 @@ package br.com.alura.anyflix.services
 
 import br.com.alura.anyflix.models.Movie
 import br.com.alura.anyflix.repositories.MovieRepository
-import io.github.serpro69.kfaker.Faker
+import com.thedeanda.lorem.LoremIpsum
 import org.slf4j.Logger
 import org.slf4j.LoggerFactory
 import org.springframework.beans.factory.annotation.Value
@@ -21,20 +21,22 @@ class DatabaseInitializerService(
     )
 
     fun saveMovies() {
-        val faker = Faker()
+        val lorem = LoremIpsum.getInstance()
         val total = repository.count()
-        logger.info("Total of movies saved: $total")
-        val amountOfMoviesThatNeedToBeSave = (amount ?: 20) - total
-        logger.info("Saving $amountOfMoviesThatNeedToBeSave movies")
-        repeat(amountOfMoviesThatNeedToBeSave.toInt()) {
-            repository.save(
-                Movie(
-                    title = faker.movie.title(),
-                    image = "https://picsum.photos/${Random.nextInt(1920, 2560)}/${Random.nextInt(1080, 1440)}",
-                    year = Random.nextInt(1900, 2023),
-                    plot = faker.movie.quote()
+        if (total > 0) {
+            logger.info("Total of movies saved: $total")
+            val amountOfMoviesThatNeedToBeSave = (amount ?: 20) - total
+            logger.info("Saving $amountOfMoviesThatNeedToBeSave movies")
+            repeat(amountOfMoviesThatNeedToBeSave.toInt()) {
+                repository.save(
+                    Movie(
+                        title = lorem.getWords(2, 3),
+                        image = "https://picsum.photos/${Random.nextInt(1920, 2560)}/${Random.nextInt(1080, 1440)}",
+                        year = Random.nextInt(1900, 2023),
+                        plot = lorem.getWords(10, 30)
+                    )
                 )
-            )
+            }
         }
     }
 }

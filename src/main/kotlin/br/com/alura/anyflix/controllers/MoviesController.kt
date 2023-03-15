@@ -60,7 +60,7 @@ class MoviesController(
         try {
             service.remove(id)
             ResponseEntity.ok().build()
-        } catch (e: IllegalArgumentException) {
+        } catch (e: Exception) {
             ResponseEntity.notFound().build()
         }
 
