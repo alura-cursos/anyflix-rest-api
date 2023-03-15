@@ -12,67 +12,6 @@ A API oferece as seguintes funcionalidades:
 - Busca de filme por id.
 - Listagem, registro e remoção da minha lista (filmes favoritados)
 
-## Como baixar
-
-Você pode [baixar o arquivo executável](https://github.com/alura-cursos/anyflix-rest-api/releases/download/v0.0.1/anyflix-rest-api.jar) ou [acessar o código fonte via GitHub](https://github.com/alura-cursos/anyflix-rest-api/tree/dev).
-
-## Como executar
-
-É possível rodar a API a partir do projeto ou arquivo jar.
-
-### Projeto
-
-Para rodar via projeto, baixe ou faça clone do repositório do GitHub. Dentro do diretório raiz, execute a task `bootRun` do Gradle. A primeira execução vai realizar o download de todas dependências necessárias.
-9
-> O uso do Wrapper, `gradlew` (Linux)  ou `gradlew.bat` (Windows), é recomendado para garantir a compatibilidade. A partir do projeto, você também pode gerar o arquivo jar se preferir, para isso rode a task `build`. Ao finalizar a task, o jar gerado será armazenado no diretório **build/libs/file-name.jar**.
-
-### Arquivo jar
-
-Para rodar o arquivo jar, vá até o arquivo a partir de um terminal (prompt no Windows) e rode o seguinte comando:
-
-```
-java -jar file-name.jar
-```
-
-> A build do projeto foi feita com Java 17, portanto, utilize a mesma versão ou uma superior. Para garantir o funcionamento, tente rodar com a 17.
-
-## Modificando properties de inicialização
-
-Por padrão o Spring Boot vai rodar a aplicação na porta `8080` e a quantidade de filmes gerados é `20`.
-
-> As informações dos filmes (id, título, imagem, ano e trama) são geradas aleatoriamente com exceção da indicação para minha lista que é sempre `false`. Também, todas são fictícias e sem nenhuma ligação.
-
-Caso queria modificar ambos valores, edite os valores das propriedades:
-
-```yaml
-server:
-  port: ${port:8081}
-movies:
-  amount: ${amount:30}
-```
-
-Na amostra acima, a aplicação vai operar na porta `8081` e serão registrados até 30 filmes `30`.
-
-## Modificando propriedades durante a execução
-
-Também é possível modificar as propriedades via command line durante a execução.
-
-### Via task `bootRun` do Gradle
-
-Com o Gradle você pode alterar os valores das properties por meio do comando `-args`:
-
-```
-./gradlew bootRun --args='--server.port=8081 --movies.amount=30'
-```
-
-### Via arquivo jar gerado
-
-Caso execute pelo arquivo jar,
-
-```
-java -jar file-name.jar --server.port=8081 --movies.amount=30
-```
-
 ## 🗺️ Mapeamento de end-points
 
 Para acessar as funcionalidades foram disponibilizados os seguintes end-points:
@@ -205,3 +144,107 @@ Para acessar as funcionalidades foram disponibilizados os seguintes end-points:
       }
   ]
   ```
+
+## ✔️ Técnicas e tecnologias utilizadas
+
+A aplicação foi desenvolvida com o Spring Boot utilizando Kotlin e foram utilizadas as seguintes técnicas:
+
+- `Controllers`: mapear os endpoints 
+- `Services`: realizar as ações esperadas pelo controller
+- `Repositories`: oferecer e realizar os comportamentos de persistência de banco de dados
+- `Aspect`: apresentar logs de execução dos services e controllers indicando as classes e métodos chamados
+- `DTO`: padrão para indicar quais informações devem ser enviada/recebidas via requisição
+- `JPA` com `Hibernate`: solução para se comunicar com o banco de dados
+- `H2 database`: banco de dados que pode ser persistido em um arquivo local sem a necessidade de um serviço de SGBD
+
+Bibliotecas do Spring Framework que foram utilizadas:
+
+- `devtools`: ferramenta para agilizar o processo de desenvolvimento sem reiniciar a aplicação para atualizar
+- `starter-web`: suporte para aplicação web em geral
+- `starter-data-jpa`: suporte para abstrair a implementação de repositórios e reutilizar comportamentos de CRUD com base na configuração da JPA
+
+## 🛠️ Abrir e rodar o projeto
+
+O projeto pode ser acesso de duas maneiras diferente:
+
+- Via código fonte
+- Rodando o arquivo JAR executável
+
+### Código fonte
+
+Para código fonte, você precisa de uma IDE compatível com o Gradle e com o Spring Boot utilizando Kotlin. Para esse projeto foi utilizado o IntelliJ IDEA 2022.3.3, você pode usar essa versão da IDE para garantir a compatibilidade ou uma versão mais recente ou outra ferramenta de sua preferência. 
+
+Caso opte pelo IntelliJ, na tela de launcher, acesse a opção **Open** e procure o projeto, selecione-o e clique em **OK**. (Caso baixar o arquivo zip, lembre-se de descompactá-lo antes de procurar)
+
+Após o IntelliJ finalizar todas as tasks, acesse o arquivo `src\main\kotlin\br\com\alura\anyflix\AluraPontoApplication.kt` e rode a função `main()`.
+
+### JAR executável
+
+Com o executável, você precisa ter acesso a um cliente do Java 17 ou superior. Acesse o arquivo JAR via terminal, e então, execute o seguinte comando: `java -jar nomeDoArquivo.jar` (provavelmente o arquivo foi nomeado como `anyflix-rest-api.jar`). 
+
+Após executar em alguma das possibilidades, deve apresentar a seguinte mensagem via console:
+
+```
+o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
+b.c.a.a.AluraPontoApplicationKt          : Started AnyflixApplicationKt in 6.279 seconds (JVM running for 6.949)
+```
+
+A partir desse momento, é só acessar a baseUrl (por padrão "http://localhost:8080") via navegador que apresentará a página inicial da aplicação!
+
+> **Observações**: evite rodar o JAR em algum local que exija mais privilégios para executar ou criar arquivos.
+
+## 📁 Acesso ao projeto
+
+Você pode acessar o projeto de diferentes maneiras:
+- [baixar o zip do código fonte](https://github.com/alura-cursos/anyflix-rest-api/archive/refs/heads/dev.zip)
+- [acessar o código fonte](https://github.com/alura-cursos/anyflix-rest-api/tree/dev)
+- [baixar o arquivo jar executável](https://github.com/alura-cursos/anyflix-rest-api/releases/download/v1.0.0/anyflix-rest-api.jar)
+
+## 🧪 Testando a API com o Postman
+
+Você pode testar a aplicação utilizando o Postman também, você pode [baixar o zip com a collection com todos os exemplos](https://github.com/alura-cursos/anyflix-rest-api/archive/refs/heads/postman.zip). 
+
+> Para fazer o teste, você precisa acessar o Postman, de preferência o cliente desktop, e fazer o [processo de importação](https://learning.postman.com/docs/getting-started/importing-and-exporting-data/#importing-data-into-postman).
+
+## 📝 Modificando propriedades da aplicação
+
+Por padrão o Spring Boot vai rodar a aplicação na porta `8080` e a quantidade de filmes gerados é `20`. Porém, é possível modificar os valores dessas propriedades:
+
+> As informações dos filmes (id, título, imagem, ano e trama) são geradas aleatoriamente com exceção da indicação para minha lista que é sempre `false`. Também, todas são fictícias e sem nenhuma ligação.
+
+Caso queria modificar ambos valores, edite os valores das propriedades:
+
+
+Na amostra acima, a aplicação vai operar na porta `8081` e serão registrados até 30 filmes `30`.
+
+### Código fonte
+
+No arquivo `application-dev.yml`, modifique o valor da `port: ${port:8080}` e `amount: ${amount:30}` para um valor esperado:
+
+```yaml
+server:
+  port: ${port:8081}
+movies:
+  amount: ${amount:30}
+```
+
+> Vamos considerar a modificação para a porta nas amostras `8081` e quantidade de filmes `30`.
+
+### Task `bootRun` do Gradle
+
+Também é possível executar o projeto via task `bootRun` do Gradle. Além de rodar o projeto, é possível modificar a porta de execução:
+
+```
+./gradlew bootRun --args='--server.port=8081 --movies.amount=30'
+```
+
+> Neste exemplo foi utilizado o Wrapper para Linux, porém, você pode utilizar a versão para Windows também (`gradlew.bat`)
+
+### JAR executável
+
+Há também a possibilidade de modificar a porta via command line pelo arquivo jar:
+
+```
+java -jar nomeDoArquivo.jar --server.port=8081 --movies.amount=30
+```
+
