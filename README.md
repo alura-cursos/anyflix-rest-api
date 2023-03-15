@@ -176,7 +176,7 @@ Para código fonte, você precisa de uma IDE compatível com o Gradle e com o Sp
 
 Caso opte pelo IntelliJ, na tela de launcher, acesse a opção **Open** e procure o projeto, selecione-o e clique em **OK**. (Caso baixar o arquivo zip, lembre-se de descompactá-lo antes de procurar)
 
-Após o IntelliJ finalizar todas as tasks, acesse o arquivo `src\main\kotlin\br\com\alura\anyflix\AluraPontoApplication.kt` e rode a função `main()`.
+Após o IntelliJ finalizar todas as tasks, acesse o arquivo `src\main\kotlin\br\com\alura\anyflix\AnyflixApplication.kt` e rode a função `main()`.
 
 ### JAR executável
 
@@ -186,7 +186,7 @@ Após executar em alguma das possibilidades, deve apresentar a seguinte mensagem
 
 ```
 o.s.b.w.embedded.tomcat.TomcatWebServer  : Tomcat started on port(s): 8080 (http) with context path ''
-b.c.a.a.AluraPontoApplicationKt          : Started AnyflixApplicationKt in 6.279 seconds (JVM running for 6.949)
+b.c.a.a.AnyflixApplicationKt          : Started AnyflixApplicationKt in 6.279 seconds (JVM running for 6.949)
 ```
 
 A partir desse momento, é só acessar a baseUrl (por padrão "http://localhost:8080") via navegador que apresentará a página inicial da aplicação!
