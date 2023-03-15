@@ -214,7 +214,7 @@ Por padrão o Spring Boot vai rodar a aplicação na porta `8080` e a quantidade
 
 ### Código fonte
 
-No arquivo `application-dev.yml`, modifique o valor da `port: ${port:8080}` e `amount: ${amount:30}` para um valor esperado:
+No arquivo `application-dev.yml`, modifique o valor da `port: ${port:8080}` e `amount: ${amount:20}` para um valor esperado:
 
 ```yaml
 server:
