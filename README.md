@@ -210,7 +210,7 @@ Você pode testar a aplicação utilizando o Postman também, você pode [baixar
 
 Por padrão o Spring Boot vai rodar a aplicação na porta `8080` e a quantidade de filmes gerados é `20`. Porém, é possível modificar os valores dessas propriedades:
 
-> As informações dos filmes (id, título, imagem, ano e trama) são geradas aleatoriamente com exceção da indicação para minha lista que é sempre `false`. Também, todas são fictícias e sem nenhuma ligação.
+> As informações dos filmes (id, título, imagem, ano e trama) são geradas aleatoriamente com exceção da indicação para minha lista que é sempre `false`. Também, todas as informações de título e enredo são fictícias e foram geradas por IA.
 
 ### Código fonte
 
