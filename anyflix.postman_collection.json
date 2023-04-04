@@ -1,9 +1,8 @@
 {
 	"info": {
-		"_postman_id": "0556fbdd-f449-4186-a4b4-9159e510ccb3",
+		"_postman_id": "83a3bae5-88d6-4dee-8173-530e12793481",
 		"name": "anyflix",
-		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
-		"_exporter_id": "643343"
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
 	},
 	"item": [
 		{
@@ -40,6 +39,26 @@
 					"path": [
 						"movies",
 						"myList"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "find movie by id",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8080/movies/f0fd1630-cb89-47f1-993d-01b764a2e59f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8080",
+					"path": [
+						"movies",
+						"f0fd1630-cb89-47f1-993d-01b764a2e59f"
 					]
 				}
 			},
